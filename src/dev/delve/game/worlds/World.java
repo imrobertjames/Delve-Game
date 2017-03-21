@@ -3,6 +3,9 @@ package dev.delve.game.worlds;
 import java.awt.Graphics;
 
 import dev.delve.game.Handler;
+import dev.delve.game.entities.EntityManager;
+import dev.delve.game.entities.creatures.Player;
+import dev.delve.game.entities.statics.Tree;
 import dev.delve.game.tiles.Tile;
 import dev.delve.game.utils.Utils;
 
@@ -12,14 +15,28 @@ public class World {
 	private int width, height;
 	private int spawnX, spawnY;
 	private int[][] tiles;
+	
+	//Entities
+	private EntityManager entityManager;
 
 	public World(Handler handler, String path) {
 		this.handler = handler;
+		
+		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		entityManager.addEntity(new Tree(handler, 300, 120));
+		
 		loadWorld(path);
+		
+		entityManager.getPlayer().setX(spawnX);
+		entityManager.getPlayer().setY(spawnY);
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
 	}
 
 	public void tick() {
-
+		entityManager.tick();
 	}
 
 	public void render(Graphics g) {
@@ -37,6 +54,9 @@ public class World {
 						(int) (y * Tile.TILE_HEIGHT - handler.getGameCamera().getyOffset()));
 			}
 		}
+		
+		//Entities
+		entityManager.render(g);
 	}
 
 	public Tile getTile(int x, int y) {
@@ -81,14 +101,6 @@ public class World {
 	}
 	
 	//Getters and setters
-	
-	public int getSpawnX() {
-		return spawnX;
-	}
-
-	public int getSpawnY() {
-		return spawnY;
-	}
 
 	public int getWidth() {
 		return width;
