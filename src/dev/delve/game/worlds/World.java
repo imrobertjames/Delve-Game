@@ -109,14 +109,14 @@ public class World {
 	private void loadRandWorld() {
 		worldGenerator = new WorldGenerator();
 		
-		width = 512;
+		width = 100;
 		worldGenerator.setWIDTH(width);
-		height = 512;
+		height = 100;
 		worldGenerator.setHEIGHT(height);
 		spawnX = 0;
 		spawnY = 0;
 		
-		worldGenerator.setFEATURE_SIZE(24.0);
+		worldGenerator.setFEATURE_SIZE(12.0);
 		
 		try {
 			tiles = worldGenerator.GenerateRandomWorld();

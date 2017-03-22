@@ -53,11 +53,11 @@ public class WorldGenerator {
 		
 		for (int y = 0; y < HEIGHT; y++) {
 			for (int x = 0; x < WIDTH; x++) {
-				double value = noise.eval(x / FEATURE_SIZE, y / FEATURE_SIZE, 0.0);
+				double value = noise.eval(x / FEATURE_SIZE, y / FEATURE_SIZE, 0.0, 0.0);
 				int rgb = 0x010101 * (int)((value + 1) * 127.5);
 				image.setRGB(x, y, rgb);
-				map_array[x][y] = (int) value * 10 + 5;
-				//System.out.println("X: " + x + " || Y: " + y + " || Value: " + (int)value);
+				map_array[x][y] = Math.abs((int)(value * 10));
+				System.out.println("X: " + x + " || Y: " + y + " || Value: " + Math.abs((int)(value * 10)));
 			}
 		}
 		

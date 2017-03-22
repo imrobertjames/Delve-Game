@@ -10,7 +10,7 @@ public class Assets {
 
 	public static BufferedImage[] btn_start;
 	
-	public static BufferedImage grass, graybrick, brownstone, tree, lava, dooropen, doorclosed, stone;
+	public static BufferedImage grass, tree, stone, water;
 
 	private static SpriteSheet characters, map, ui;
 
@@ -24,6 +24,7 @@ public class Assets {
 		grass = map.crop((width+margin)*3, (height+margin)*16, width, height);
 		tree = map.crop((width+margin)*13, (height+margin)*9, width, height);
 		stone = map.crop((width+margin)*55, (height+margin)*21, width, height);
+		water = map.crop(0, 0, width, height);
 		
 		
 		//UI
