@@ -7,9 +7,9 @@ import dev.delve.game.tiles.Tile;
 public abstract class Creature extends Entity {
 	
 	public static final int DEFAULT_HEALTH = 10;
-	public static final float DEFAULT_SPEED = 3.0f;
-	public static final int DEFAULT_CREATURE_WIDTH = 32;
-	public static final int DEFAULT_CREATURE_HEIGHT = 48;
+	public static final float DEFAULT_SPEED = 1.0f;
+	public static final int DEFAULT_CREATURE_WIDTH = 16;
+	public static final int DEFAULT_CREATURE_HEIGHT = 24;
 
 	protected int health;
 	protected float speed;

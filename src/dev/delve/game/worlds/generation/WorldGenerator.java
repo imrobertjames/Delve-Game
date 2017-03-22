@@ -11,6 +11,34 @@ public class WorldGenerator {
 	private static int WIDTH = 512;
 	private static int HEIGHT = 512;
 	private static double FEATURE_SIZE = 24;
+
+	private static int[][] map_array = new int[512][512];
+	
+	
+	public int[][] GenerateRandomWorld()  
+		throws IOException {
+			
+		
+		OpenSimplexNoise noise = new OpenSimplexNoise();
+		BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
+		
+		for (int y = 0; y < HEIGHT; y++) {
+			for (int x = 0; x < WIDTH; x++) {
+				double value = noise.eval(x / FEATURE_SIZE, y / FEATURE_SIZE, 0.0, 0.0);
+				int rgb = 0x010101 * (int)((value + 1) * 127.5);
+				image.setRGB(x, y, rgb);
+				map_array[x][y] = Math.abs((int)(value * 10));
+				//System.out.println("X: " + x + " || Y: " + y + " || Value: " + Math.abs((int)(value * 10)));
+			}
+		}
+		
+		return map_array;
+		
+	}
+	
+	
+	
+	//GETTERS SETTERS
 	public static int getWIDTH() {
 		return WIDTH;
 	}
@@ -40,29 +68,5 @@ public class WorldGenerator {
 		FEATURE_SIZE = fEATURE_SIZE;
 	}
 
-
-	private static int[][] map_array = new int[512][512];
-	
-	
-	public int[][] GenerateRandomWorld()  
-		throws IOException {
-			
-		
-		OpenSimplexNoise noise = new OpenSimplexNoise();
-		BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
-		
-		for (int y = 0; y < HEIGHT; y++) {
-			for (int x = 0; x < WIDTH; x++) {
-				double value = noise.eval(x / FEATURE_SIZE, y / FEATURE_SIZE, 0.0, 0.0);
-				int rgb = 0x010101 * (int)((value + 1) * 127.5);
-				image.setRGB(x, y, rgb);
-				map_array[x][y] = Math.abs((int)(value * 10));
-				System.out.println("X: " + x + " || Y: " + y + " || Value: " + Math.abs((int)(value * 10)));
-			}
-		}
-		
-		return map_array;
-		
-	}
 }
 

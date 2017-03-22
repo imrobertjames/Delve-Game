@@ -9,14 +9,14 @@ public class Tile {
 	public static Tile[] tiles = new Tile[256]; // holds various tile objects
 	public static Tile grassTile = new GrassTile(0);
 	//public static Tile stoneTile = new StoneTile(6);
-	//public static Tile treeTile = new TreeTile(5);
-	public static Tile waterTile = new WaterTile(2);
+	public static Tile dirt5Tile = new DirtTile(5);
+	public static Tile flowerTile = new FlowerTile(4);
 	public static Tile water2Tile = new WaterTile(3);
-	public static Tile water3Tile = new WaterTile(4);
+	public static Tile dirtTile = new DirtTile(2);
 
 	// CLASS
 
-	public static final int TILE_WIDTH = 32, TILE_HEIGHT = 32;
+	public static final int TILE_WIDTH = 16, TILE_HEIGHT = 16;
 
 	protected BufferedImage texture;
 	protected final int id;
