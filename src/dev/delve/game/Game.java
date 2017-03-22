@@ -7,6 +7,7 @@ import dev.delve.game.display.Display;
 import dev.delve.game.gfx.Assets;
 import dev.delve.game.gfx.GameCamera;
 import dev.delve.game.input.KeyManager;
+import dev.delve.game.input.MouseManager;
 import dev.delve.game.states.CreationState;
 import dev.delve.game.states.GameState;
 import dev.delve.game.states.MenuState;
@@ -31,12 +32,13 @@ public class Game implements Runnable {
 	private Graphics g;
 
 	// States
-	private State gameState;
-	private State MenuState;
-	private State CreationState;
+	public State gameState;
+	public State menuState;
+	public State creationState;
 	
 	//Input
 	private KeyManager keyManager;
+	private MouseManager mouseManager;
 	
 	//Camera
 	private GameCamera gameCamera;
@@ -49,6 +51,7 @@ public class Game implements Runnable {
 		this.title = title;
 		this.scale = scale;
 		keyManager = new KeyManager();
+		mouseManager = new MouseManager();
 	}
 
 	public synchronized void start() {
@@ -76,6 +79,10 @@ public class Game implements Runnable {
 	private void init() {
 		display = new Display(title, width, height, scale);
 		display.getFrame().addKeyListener(keyManager);
+		display.getFrame().addMouseListener(mouseManager);
+		display.getFrame().addMouseMotionListener(mouseManager);
+		display.getCanvas().addMouseListener(mouseManager);
+		display.getCanvas().addMouseMotionListener(mouseManager);
 		Assets.init();
 		
 		handler = new Handler(this);
@@ -83,10 +90,11 @@ public class Game implements Runnable {
 		
 
 		gameState = new GameState(handler);
-		MenuState = new MenuState(handler);
-		CreationState = new CreationState(handler);
+		menuState = new MenuState(handler);
+		creationState = new CreationState(handler);
 
 		State.setState(gameState);
+		State.setState(menuState);
 	}
 
 	private void tick() {
@@ -168,6 +176,10 @@ public class Game implements Runnable {
 	
 	public KeyManager getKeyManager() {
 		return keyManager;
+	}
+	
+	public MouseManager getMouseManager() {
+		return mouseManager;
 	}
 	
 	public GameCamera getGameCamera() {

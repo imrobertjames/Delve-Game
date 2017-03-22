@@ -8,11 +8,11 @@ public class Assets {
 
 	public static BufferedImage[] player_down, player_up, player_left, player_right, player_still;
 
-	public static BufferedImage path, path_left, path_right, path_top, path_bot, path_topright, path_botright, path_topleft, path_botleft;
+	public static BufferedImage[] btn_start;
 	
 	public static BufferedImage grass, graybrick, brownstone, tree, lava, dooropen, doorclosed, stone;
 
-	private static SpriteSheet characters, map;
+	private static SpriteSheet characters, map, ui;
 
 	public static void init() {
 		/*
@@ -25,6 +25,12 @@ public class Assets {
 		tree = map.crop((width+margin)*13, (height+margin)*9, width, height);
 		stone = map.crop((width+margin)*55, (height+margin)*21, width, height);
 		
+		
+		//UI
+		ui = new SpriteSheet(ImageLoader.loadImage("/textures/start_button.png"));
+		btn_start = new BufferedImage[2];
+		btn_start[0] = ui.crop(0, 0, 128, 64);
+		btn_start[1] = ui.crop(0, 64, 128, 64);
 		
 
 		characters = new SpriteSheet(ImageLoader.loadImage("/textures/gfx/character.png"));

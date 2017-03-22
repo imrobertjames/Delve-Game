@@ -2,6 +2,7 @@ package dev.delve.game;
 
 import dev.delve.game.gfx.GameCamera;
 import dev.delve.game.input.KeyManager;
+import dev.delve.game.input.MouseManager;
 import dev.delve.game.worlds.World;
 
 public class Handler {
@@ -46,4 +47,7 @@ public class Handler {
 		this.world = world;
 	}
 	
+	public MouseManager getMouseManager() {
+		return game.getMouseManager();
+	}
 }
