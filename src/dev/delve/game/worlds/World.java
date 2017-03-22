@@ -1,6 +1,7 @@
 package dev.delve.game.worlds;
 
 import java.awt.Graphics;
+import java.io.IOException;
 
 import dev.delve.game.Handler;
 import dev.delve.game.entities.EntityManager;
@@ -8,6 +9,7 @@ import dev.delve.game.entities.creatures.Player;
 import dev.delve.game.entities.statics.Tree;
 import dev.delve.game.tiles.Tile;
 import dev.delve.game.utils.Utils;
+import dev.delve.game.worlds.generation.WorldGenerator;
 
 public class World {
 
@@ -15,6 +17,7 @@ public class World {
 	private int width, height;
 	private int spawnX, spawnY;
 	private int[][] tiles;
+	private WorldGenerator worldGenerator;
 	
 	//Entities
 	private EntityManager entityManager;
@@ -25,7 +28,8 @@ public class World {
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
 		entityManager.addEntity(new Tree(handler, 300, 120));
 		
-		loadWorld(path);
+		//loadWorld(path);
+		loadRandWorld();
 		
 		entityManager.getPlayer().setX(spawnX);
 		entityManager.getPlayer().setY(spawnY);
@@ -100,6 +104,27 @@ public class World {
 			}
 		}
 
+	}
+	
+	private void loadRandWorld() {
+		worldGenerator = new WorldGenerator();
+		
+		width = 512;
+		worldGenerator.setWIDTH(width);
+		height = 512;
+		worldGenerator.setHEIGHT(height);
+		spawnX = 0;
+		spawnY = 0;
+		
+		worldGenerator.setFEATURE_SIZE(24.0);
+		
+		try {
+			tiles = worldGenerator.GenerateRandomWorld();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	//Getters and setters
