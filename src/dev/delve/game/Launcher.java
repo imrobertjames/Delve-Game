@@ -8,8 +8,8 @@ public class Launcher {
 	 */
 
 	public static void main(String[] args) {
-		int width = 900;
-		int height = 600;
+		int width = 640;
+		int height = 480;
 		int scale = 1; //broken, don't use this.
 		
 		Game game = new Game("Delve", width, height, scale); 

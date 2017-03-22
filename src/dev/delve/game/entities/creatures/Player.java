@@ -15,10 +15,10 @@ public class Player extends Creature {
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
 		
-		bounds.x = 16; //how far IN from the left
-		bounds.y = 5; // How far DOWN from the top
-		bounds.width = 32;
-		bounds.height =59;
+		bounds.x = 10; //how far IN from the left
+		bounds.y = 0; // How far DOWN from the top
+		bounds.width = 16;
+		bounds.height = 48;
 		
 		//Animations
 		animDown = new Animation(500, Assets.player_down);

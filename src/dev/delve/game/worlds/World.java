@@ -50,6 +50,8 @@ public class World {
 		
 		for (int y = yStart; y < yEnd; y++) {
 			for (int x = xStart; x < xEnd; x++) {
+				Tile.grassTile.render(g, (int) (x * Tile.TILE_WIDTH - handler.getGameCamera().getxOffset()),
+						(int) (y * Tile.TILE_HEIGHT - handler.getGameCamera().getyOffset())); //render grass behind everything for now
 				getTile(x, y).render(g, (int) (x * Tile.TILE_WIDTH - handler.getGameCamera().getxOffset()),
 						(int) (y * Tile.TILE_HEIGHT - handler.getGameCamera().getyOffset()));
 			}
@@ -65,7 +67,7 @@ public class World {
 		
 		Tile t = Tile.tiles[tiles[x][y]];
 		if (t == null)
-			return Tile.dirtTile; // default to something incase of null
+			return Tile.grassTile; // default to something incase of null
 		return t;
 
 	}

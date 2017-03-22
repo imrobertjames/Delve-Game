@@ -13,8 +13,8 @@ public class Tree extends StaticEntity{
 		// TODO Auto-generated constructor stub
 		
 		bounds.x = 5;
-		bounds.y = (int) (height / 1.5f);
-		bounds.width = width - 20;
+		bounds.y = (int) (height / 2);
+		bounds.width = width - 5;
 		bounds.height = (int) (height - height / 1.5f);
 	}
 

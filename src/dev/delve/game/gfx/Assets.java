@@ -4,10 +4,12 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 
-	private static final int width = 32, height = 32;
+	private static final int width = 16, height = 16, margin = 1;
 
 	public static BufferedImage[] player_down, player_up, player_left, player_right, player_still;
 
+	public static BufferedImage path, path_left, path_right, path_top, path_bot, path_topright, path_botright, path_topleft, path_botleft;
+	
 	public static BufferedImage grass, graybrick, brownstone, tree, lava, dooropen, doorclosed, stone;
 
 	private static SpriteSheet characters, map;
@@ -19,40 +21,42 @@ public class Assets {
 		// just going to load a few for now
 		map = new SpriteSheet(ImageLoader.loadImage("/textures/tileset.png"));
 
-		grass = map.crop(0, 0, width, height);
-		stone = map.crop(width*6, height*11, width, height);
-		graybrick = map.crop(width, 0, width, height);
-		brownstone = map.crop(width * 2, 0, width, height);
-		tree = map.crop(0, height, width, height);
-		lava = map.crop(width * 3, 0, width, height);
-		dooropen = map.crop(width * 7, height, width, height);
-		doorclosed = map.crop(width * 8, height, width, height);
+		grass = map.crop((width+margin)*3, (height+margin)*16, width, height);
+		tree = map.crop((width+margin)*13, (height+margin)*9, width, height);
+		stone = map.crop((width+margin)*55, (height+margin)*21, width, height);
+		
+		
 
-		characters = new SpriteSheet(ImageLoader.loadImage("/textures/spritesheet.png"));
+		characters = new SpriteSheet(ImageLoader.loadImage("/textures/gfx/character.png"));
 
 		//player = characters.crop(0, 0, width, height);
+		int pheight = height*2; //fixes a weird issue with player gfx
 		player_still = new BufferedImage[1];
-		player_still[0] = characters.crop(width, 0, width, height);
+		player_still[0] = characters.crop(0, 0, width, pheight);
 		
-		player_down = new BufferedImage[3];
-		player_down[0] = characters.crop(0, 0, width, height);
-		player_down[1] = characters.crop(width, 0, width, height);
-		player_down[2] = characters.crop(width*2, 0, width, height);
+		player_down = new BufferedImage[4];
+		player_down[0] = characters.crop(0, 0, width, pheight);
+		player_down[1] = characters.crop(width, 0, width, pheight);
+		player_down[2] = characters.crop(width*2, 0, width, pheight);
+		player_down[3] = characters.crop(width*3, 0, width, pheight);
 		
-		player_left = new BufferedImage[3];
-		player_left[0] = characters.crop(0, height, width, height);
-		player_left[1] = characters.crop(width, height, width, height);
-		player_left[2] = characters.crop(width*2, height, width, height);
+		player_left = new BufferedImage[4];
+		player_left[0] = characters.crop(0, pheight*3, width, pheight);
+		player_left[1] = characters.crop(width, pheight*3, width, pheight);
+		player_left[2] = characters.crop(width*2, pheight*3, width, pheight);
+		player_left[3] = characters.crop(width*2, pheight*3, width, pheight);
 		
-		player_right = new BufferedImage[3];
-		player_right[0] = characters.crop(0, height * 2, width, height);
-		player_right[1] = characters.crop(width, height * 2, width, height);
-		player_right[2] = characters.crop(width*2, height * 2, width, height);
+		player_right = new BufferedImage[4];
+		player_right[0] = characters.crop(0, pheight, width, pheight);
+		player_right[1] = characters.crop(width, pheight, width, pheight);
+		player_right[2] = characters.crop(width*2, pheight, width, pheight);
+		player_right[3] = characters.crop(width*2, pheight, width, pheight);
 		
-		player_up = new BufferedImage[3];
-		player_up[0] = characters.crop(0, height * 3, width, height);
-		player_up[1] = characters.crop(width, height * 3, width, height);
-		player_up[2] = characters.crop(width*2, height * 3, width, height);
+		player_up = new BufferedImage[4];
+		player_up[0] = characters.crop(0, pheight * 2, width, pheight);
+		player_up[1] = characters.crop(width, pheight * 2, width, pheight);
+		player_up[2] = characters.crop(width*2, pheight * 2, width, pheight);
+		player_up[3] = characters.crop(width*2, pheight*2, width, pheight);
 	}
 
 }
